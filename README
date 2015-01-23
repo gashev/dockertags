@@ -1,0 +1,47 @@
+Get tags of a docker image from the index.docker.io.
+
+Usage: dockertags TERM
+
+Examples:
+
+$ dockertags centos
+latest
+5
+5.11
+6
+6.6
+7
+7.0.1406
+centos5
+centos5.11
+centos6
+centos6.6
+centos7
+centos7.0.1406
+
+$ dockertags debian
+latest
+6
+6.0
+6.0.10
+6.0.8
+6.0.9
+7
+7.3
+7.4
+7.5
+7.6
+7.7
+7.8
+8
+8.0
+experimental
+jessie
+oldstable
+rc-buggy
+sid
+squeeze
+stable
+testing
+unstable
+wheezy
