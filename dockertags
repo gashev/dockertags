@@ -28,7 +28,7 @@ def validate_arguments():
         error('Usage: %s TERM' % (cmd))
 
 def send_request(term):
-    """Send request to https:///index.docker.io.
+    """Send request to https://index.docker.io.
 
     :param term: string
     :returns: requests.models.Response
