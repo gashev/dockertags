@@ -35,8 +35,8 @@ def send_request(term):
     :returns: urllib3.response.HTTPResponse
     """
     http = urllib3.PoolManager(
-        cert_reqs='CERT_REQUIRED',
-        ca_certs=certifi.where()
+        cert_reqs = 'CERT_REQUIRED',
+        ca_certs = certifi.where()
     )
     url = 'https://index.docker.io/v1/repositories/%s/tags' % (term)
     return http.request('GET', url)
