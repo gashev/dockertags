@@ -1,5 +1,10 @@
 #!/usr/bin/python
 
+"""Get tags of a docker image from the index.docker.io.
+
+Usage: dockertags TERM
+"""
+
 import certifi
 import json
 import os
@@ -7,15 +12,28 @@ import sys
 import urllib3
 
 def error(message):
+    """Display error message to STDERR and exit with exit code 1.
+
+    :param message: error message string
+    """
     sys.stderr.write(message + '\n')
     sys.exit(1)
 
 def validate_arguments():
+    """Check command line arguments passed to a Python script.
+
+    If incorrect arguments count - display error.
+    """
     if (len(sys.argv) != 2):
         cmd = os.path.basename(sys.argv[0])
         error('Usage: %s TERM' % (cmd))
 
 def send_request(term):
+    """Send request to https:///index.docker.io.
+
+    :param term: string
+    :returns: urllib3.response.HTTPResponse
+    """
     http = urllib3.PoolManager(
         cert_reqs='CERT_REQUIRED',
         ca_certs=certifi.where()
@@ -24,14 +42,30 @@ def send_request(term):
     return http.request('GET', url)
 
 def validate_status(status):
+    """Check is http status code 200 Ok.
+
+    :param status: int http status code
+    :raises exceptions.TypeError: if status code is not 200
+    """
     if (status != 200):
         raise
 
 def print_tags(data):
+    """Read json from the data string and display tags.
+
+    :param data: json string
+    """
     for item in json.loads(data):
         print item['name']
 
 def main():
+    """"Get tags of a docker image from the index.docker.io.
+
+    Check command line arguments, send request to index.docker.io and display
+    image tags.
+
+    :returns: 0
+    """
     validate_arguments()
     try:
         r = send_request(sys.argv[1])
