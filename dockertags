@@ -51,7 +51,7 @@ def print_tags(data):
     :param data: json string
     """
     for item in json.loads(data):
-        print item['name']
+        print(item['name'])
 
 def main():
     """"Get tags of a docker image from the index.docker.io.
