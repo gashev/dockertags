@@ -28,8 +28,7 @@ def validate_status(status):
         raise
 
 def print_tags(data):
-    data = json.loads(data)
-    for item in data:
+    for item in json.loads(data):
         print item['name']
 
 def main():
